@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "ask": [
+      "Edit(./materials/**)"
+    ],
+    "deny": [
+      "Bash(git push *)",
+      "Read(./.env)",
+      "Read(./.env.*)"
+    ]
+  }
+}

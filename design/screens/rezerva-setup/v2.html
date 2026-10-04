@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rezervă un setup · pikapp</title>
+<style>
+  /* Tokens: every value below comes from .claude/skills/specs/SKILL.md */
+  @font-face { font-family: "Inter Tight"; src: url("../../materials/fonts/InterTight-VariableFont_wght.ttf") format("truetype");
+    font-weight: 100 900; font-display: swap; }
+  :root {
+    --ink: #0D0D0D; --surface: #1C1C1C; --line: #262626; --text: #FFFFFF; --text-muted: #ABABAB; --signal: #FF4A00;
+    --size-meta: 14px; --size-body: 16px; --size-title-s: 22px; --size-title: 32px;
+    --s-4: 4px; --s-8: 8px; --s-12: 12px; --s-16: 16px; --s-24: 24px; --s-32: 32px; --s-48: 48px;
+    --radius-s: 8px; --radius-l: 20px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--ink); }
+  body { font-family: "Inter Tight", system-ui, sans-serif; font-weight: 500; font-size: var(--size-body); line-height: 1.5;
+    color: var(--text); background: var(--ink); -webkit-font-smoothing: antialiased; }
+  .page { max-width: 560px; margin: 0 auto; padding: var(--s-16) var(--s-16) var(--s-48); }
+  header { display: flex; align-items: center; height: 48px; margin-bottom: var(--s-24); }
+  header img { height: 24px; width: auto; display: block; }
+  h1 { font-size: var(--size-title); line-height: 1.05; letter-spacing: -0.03em; font-weight: 700; }
+  .lead { margin-top: var(--s-12); }
+  .muted { color: var(--text-muted); }
+  .t-meta { font-size: var(--size-meta); line-height: 1.4; }
+  .t-body { font-size: var(--size-body); line-height: 1.5; }
+  .t-title-s { font-size: var(--size-title-s); line-height: 1.2; letter-spacing: -0.02em; font-weight: 700; }
+  fieldset { border: 0; margin-top: var(--s-32); }
+  legend { font-weight: 700; margin-bottom: var(--s-12); }
+  input[type=radio] { position: absolute; opacity: 0; width: 1px; height: 1px; }
+
+  .chips { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-8); }
+  .chip span { display: flex; align-items: center; justify-content: center; height: 48px; padding: 0 var(--s-16);
+    border: 1px solid var(--line); border-radius: var(--radius-s); cursor: pointer;
+    transition: border-color 150ms ease-out, box-shadow 150ms ease-out; }
+  .chip input:checked + span { border-color: var(--signal); box-shadow: 0 0 0 1px var(--signal); background: var(--surface); }
+  .chip input:focus-visible + span { outline: 2px solid var(--text); outline-offset: 2px; }
+
+  .cards { display: grid; gap: var(--s-12); }
+  .card { position: relative; display: grid; gap: var(--s-8); padding: var(--s-16); background: var(--surface);
+    border: 1px solid var(--line); border-radius: var(--radius-l); cursor: pointer;
+    transition: border-color 150ms ease-out, box-shadow 150ms ease-out; }
+  .card-top { display: flex; justify-content: space-between; align-items: center; }
+  .check { color: var(--signal); opacity: 0; transition: opacity 150ms ease-out; }
+  .gear { list-style: none; }
+  .price { margin-top: var(--s-8); }
+  .cond { color: var(--text-muted); margin-top: calc(-1 * var(--s-4)); }
+  .card:has(input:checked) { border-color: var(--signal); box-shadow: 0 0 0 1px var(--signal); }
+  .card:has(input:checked) .check { opacity: 1; }
+  .card:has(input:focus-visible) { outline: 2px solid var(--text); outline-offset: 2px; }
+  .card.is-busy { cursor: not-allowed; color: var(--text-muted); }
+  .card.is-busy .busy { display: block; color: var(--text-muted); }
+
+  .action { margin-top: var(--s-32); }
+  .btn-primary { display: flex; align-items: center; justify-content: center; height: 56px; width: 100%;
+    background: var(--signal); color: var(--ink); border-radius: var(--radius-s);
+    font-weight: 700; font-size: var(--size-body); text-decoration: none; }
+  .btn-primary:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .btn-primary:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+  .action p { margin-top: var(--s-12); }
+  .custom { margin-top: var(--s-32); padding-top: var(--s-24); border-top: 1px solid var(--line); }
+  .btn-text { display: inline-flex; align-items: center; min-height: 48px; color: var(--text);
+    font-weight: 500; font-size: var(--size-body); text-decoration: underline; text-underline-offset: 4px; }
+  .btn-text:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+  footer { margin-top: var(--s-48); color: var(--text-muted); }
+  @media (min-width: 560px) { .chips { grid-template-columns: repeat(4, 1fr); } .chip span { padding: 0 var(--s-8); } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+  <main class="page">
+    <header><img src="../../materials/logo/pikapp-lockup-orange-trimmed.png" alt="pikapp"></header>
+
+    <h1>Setup pentru o noapte</h1>
+    <p class="lead t-body muted">Prețul include livrarea, montajul și TVA. București, Ploiești și împrejurimi.</p>
+
+    <form onsubmit="return false">
+      <fieldset>
+        <legend>Data</legend>
+        <div class="chips">
+        <label class="chip"><input type="radio" name="data" value="vin-9" data-say="vineri, 9 oct"><span>Vin, 9 oct</span></label>
+        <label class="chip"><input type="radio" name="data" value="sam-10" data-say="sâmbătă, 10 oct" checked><span>Sâm, 10 oct</span></label>
+        <label class="chip"><input type="radio" name="data" value="dum-11" data-say="duminică, 11 oct"><span>Dum, 11 oct</span></label>
+        <label class="chip"><input type="radio" name="data" value="alta" data-say="altă dată (o scriu mai jos)"><span>Altă dată</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Setup</legend>
+        <div class="cards">
+        <label class="card" data-setup="booth">
+          <input type="radio" name="setup" value="booth" data-name="Booth" data-price="800 RON">
+          <span class="card-top"><span class="t-title-s">Booth</span><svg class="check" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <ul class="gear t-body"><li>2× Pioneer CDJ-3000</li><li>Mixer Pioneer DJM-V10 sau Allen &amp; Heath Xone:92</li></ul>
+          <span class="price t-title-s">800 RON</span>
+          <span class="cond t-body">tot inclus: livrare, montaj, TVA</span>
+          <span class="busy t-body" hidden>ocupat pe 10 oct</span>
+        </label>
+        <label class="card" data-setup="booth-sunet">
+          <input type="radio" name="setup" value="booth-sunet" data-name="Booth + sunet" data-price="1.800 RON" checked>
+          <span class="card-top"><span class="t-title-s">Booth + sunet</span><svg class="check" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <ul class="gear t-body"><li>Booth complet</li><li>2× Electro-Voice EKX-15P și 1× EKX-18SP</li></ul>
+          <span class="price t-title-s">1.800 RON</span>
+          <span class="cond t-body">tot inclus: livrare, montaj, TVA</span>
+          <span class="busy t-body" hidden>ocupat pe 10 oct</span>
+        </label>
+        <label class="card" data-setup="club">
+          <input type="radio" name="setup" value="club" data-name="Club" data-price="2.800 RON">
+          <span class="card-top"><span class="t-title-s">Club</span><svg class="check" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <ul class="gear t-body"><li>3× AlphaTheta CDJ-3000X și Pioneer DJM-V10 LF</li><li>Sunet Electro-Voice EKX pentru sală</li></ul>
+          <span class="price t-title-s">2.800 RON</span>
+          <span class="cond t-body">tot inclus: livrare, montaj, TVA</span>
+          <span class="busy t-body" hidden>ocupat pe 10 oct</span>
+        </label>
+        </div>
+      </fieldset>
+    </form>
+
+    <section class="action">
+      <a class="btn-primary" id="book" href="#" target="_blank" rel="noopener">Rezervă pe WhatsApp</a>
+      <p class="t-body muted">Se deschide WhatsApp cu setup-ul, data și prețul deja scrise. Confirmăm disponibilitatea în chat.</p>
+    </section>
+
+      <section class="custom">
+        <p class="t-body muted">Ai nevoie de altă combinație?</p>
+        <a class="btn-text" href="https://pikapp.ro/#contact">Cere ofertă personalizată</a>
+      </section>
+
+    <footer class="t-meta">
+      <p>BASS MVNT S.R.L., CUI 51482508</p>
+      <p>rentals@pikapp.ro</p>
+    </footer>
+  </main>
+
+<script>
+  // Example availability for the mock: Club is booked on 10 oct. In production this comes from our calendar, never invented.
+  const BUSY = { "sam-10": ["club"] };
+  const PHONE = "40724262040";
+  const book = document.getElementById("book");
+
+  function update() {
+    const date = document.querySelector('input[name=data]:checked');
+    const busy = BUSY[date.value] || [];
+    document.querySelectorAll(".card").forEach(card => {
+      const input = card.querySelector("input");
+      const isBusy = busy.includes(card.dataset.setup);
+      card.classList.toggle("is-busy", isBusy);
+      card.querySelector(".busy").hidden = !isBusy;
+      input.disabled = isBusy;
+      if (isBusy && input.checked) {
+        input.checked = false;
+        document.querySelector('.card:not(.is-busy) input').checked = true;
+      }
+    });
+    const setup = document.querySelector('input[name=setup]:checked');
+    const msg = `Salut! Vreau setup-ul ${setup.dataset.name} pe ${date.dataset.say}. Preț afișat: ${setup.dataset.price}, tot inclus. Locația: `;
+    book.href = `https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`;
+  }
+  document.querySelectorAll("input[type=radio]").forEach(i => i.addEventListener("change", update));
+  update();
+</script>
+<!--
+VALUE TRACE (v2) : every value used, and the spec line it comes from
+Colours: ink #0D0D0D page; surface #1C1C1C cards and selected chip; line #262626 borders; text #FFFFFF; text-muted #ABABAB; signal #FF4A00 primary fill, selected border, check  (specs, Colour)
+Primary label: #0D0D0D ink on #FF4A00 signal  (specs, Components, Primary button)
+Type: Inter Tight 500/700 (specs, Type); 14px footer meta; 16px body, chips, button, gear lists; 22px card titles and prices; 32px screen title
+Price conditions: 16px body, text-muted #ABABAB  (specs, Components, Setup card)
+Line heights 1.4 / 1.5 / 1.2 / 1.05; letter spacing -0.02em at 22px, -0.03em at 32px  (specs, Type)
+Spacing: 4, 8, 12, 16, 24, 32, 48  (specs, Space)
+Radius: 8 chips and buttons, 20 cards  (specs, Space, radius)
+Heights: chips 48, primary button 56, header 48, logo 24  (specs, Components; Logo)
+Selected state: 1px signal border + 1px signal ring = 2px  (specs, Components, Setup card and Date chip)
+Custom track: btn-text: text #FFFFFF, 16px/500, underline, min-height 48 (specs Components, Text button)
+Motion: 150ms ease-out on state change, none under prefers-reduced-motion  (specs, Motion)
+Layout: max width 560, page padding 16  (specs, Space, layout)
+-->
+</body>
+</html>

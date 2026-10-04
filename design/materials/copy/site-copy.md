@@ -1,0 +1,65 @@
+# Live site copy, pikapp.ro
+
+Captured from https://pikapp.ro on 4 Oct 2026 (Framer build published 12 Mar 2026). Written by the pikapp team. Kept as the reference for what the site says today; new screens take their copy from their own file in this folder.
+
+- pikapp – Închirieri echipamente DJ
+- Acasă
+- Închirieri Echipamente
+- Evenimente
+- De Ce Noi
+- Contact
+- Curated to elevate.
+- Solicită Ofertă
+- Vezi Echipamentele
+- THE NEVER ENDING GROOVE
+- Our purpose is to bring people happy moments where they can be themselves. We ignite the inner spark by sharing our passion for music.
+- THE TRIBE
+- We don't just throw parties; we build a community. A place where you can be yourself, surrounded by friends you haven't met yet.
+- QUALITY & PROFESSIONALISM
+- We provide industry-standard equipment to prioritize the maintenance of high standards. Reliable, dependable, and driven by passion.
+- Creating moments of joy, connection, and music.
+- The Tribe
+- More than parties. A community where you belong.
+- We provide industry-standard equipment you can trust — driven by passion.
+- Our Equipment
+- Pioneer CDJ-3000
+- Get Price on WhatsApp
+- Allen & Heath Xone:92
+- AlphaTheta RMX-IGNITE
+- Allen & Heath Xone 96
+- AlphaTheta CDJ-3000X
+- Pioneer DJM-A9
+- Recorder Tascam
+- DR-05XP
+- Pioneer DJM V10 LF
+- Technics SL-1210MK7
+- Sound System Rental
+- Electro-Voice EKX 15P / 18SP
+- Professional powered PA speakers — perfect for parties, weddings & corporate events.
+- Adam Audio T5V
+- Accurate sound for studio sessions.
+- Why Choose Us
+- Free Delivery Over 300 RON
+- No extra transport fees when your order passes 300 RON.
+- Setup Included
+- We deliver and set up the equipment so everything is ready to go.
+- Package Discounts Available
+- Better pricing when you choose complete equipment bundles.
+- Phone:
+- +40 724 262 040
+- Email:
+- contact@pikapp.ro
+- rentals@pikapp.ro
+- Service Area:
+- Services available in Bucharest, Ploiești and nearby areas.
+- Name
+- Email
+- Phone Number
+- Event details and requested equipment
+- Submit
+- Created by Our Team
+- BASS MVNT S.R.L. ,
+- CUI:
+- 51482508
+- Created by our team
+- BASS MVNT S.R.L.
