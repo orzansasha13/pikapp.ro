@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "stytrix": {
+      "source": "hirosichen/stytrix-skills",
+      "sourceType": "github",
+      "skillPath": "skills/stytrix/SKILL.md",
+      "computedHash": "35b478fc268d73268c5679d632866e188ee098537e9a046b8b8e22624e632ab1"
+    }
+  }
+}
